@@ -13,7 +13,7 @@ services:
       - db:/var/lib/mysql
       - ./db:/docker-entrypoint-initdb.d
     networks:
-      - monitoring
+      - mysql_network
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:5.1.1
@@ -24,12 +24,12 @@ services:
     depends_on:
       - db
     networks:
-      - monitoring
+      - mysql_network
 
 volumes:
   db:
     driver: local
 
 networks:
-  monitoring:
+  mysql_network:
     driver: bridge
